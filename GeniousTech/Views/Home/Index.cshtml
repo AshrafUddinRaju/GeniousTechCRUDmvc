@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["Title"] = "Welcome to GeniousTech";
+    var services = ViewBag.Services as List<GeniousTech.Models.Service>;
+    var projects = ViewBag.Projects as List<GeniousTech.Models.Project>;
+    var team = ViewBag.Team as List<GeniousTech.Models.TeamMember>;
+}
+
+<style>
+    body {
+        background-color: #e6f2ff; /* Light Blue Background */
+    }
+
+    .section-blue {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .card-orange {
+        background-color: #fff4e6; /* Light Orange Background */
+        color: #5a2d0c;
+    }
+
+        .card-orange .card-title {
+            color: #d35400;
+        }
+
+        .card-orange .card-text {
+            color: #7a4c10;
+        }
+
+    .team-card img {
+        border: 3px solid #fd7e14;
+    }
+
+    .service-icon-box {
+        transition: transform 0.2s ease;
+    }
+
+        .service-icon-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(0, 123, 255, 0.2);
+        }
+</style>
+
+<div class="container-fluid p-0">
+    <!-- Hero Section -->
+    <section class="text-center text-white bg-dark py-5">
+        <h1 class="display-4 fw-bold">Welcome to <span class="text-primary">GeniousTech</span></h1>
+        <p class="lead">Empowering businesses with cutting-edge technology solutions</p>
+        <a href="/Contact" class="btn btn-outline-light btn-lg mt-3">Get in Touch</a>
+    </section>
+
+    <!-- Services Section -->
+    <!-- Services Icons Section -->
+    <section class="py-5 text-center bg-white">
+        <div class="container">
+            <h2 class="mb-4">What We Offer</h2>
+            <div class="row justify-content-center">
+                @foreach (var service in services)
+                {
+                    <div class="col-6 col-md-3 mb-4">
+                        <div class="p-4 border rounded shadow-sm bg-light service-icon-box">
+                            <i class="@service.IconClass fa-3x text-primary mb-2"></i>
+                            <h6 class="mt-2">@service.Title</h6>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Projects Section -->
+    <section class="bg-dark text-white py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Our Projects</h2>
+            <div class="row">
+                @foreach (var project in projects)
+                {
+                    <div class="col-md-4 mb-4">
+                        <div class="card border-0 h-100 shadow card-orange">
+                            <img src="@project.ImageUrl" class="card-img-top" alt="@project.Title" style="height: 200px; object-fit: cover;" />
+                            <div class="card-body">
+                                <h5 class="card-title">@project.Title</h5>
+                                <p class="card-text">@project.Description</p>
+                            </div>
+                            <div class="card-footer small text-muted">
+                                Completed on @project.CompletedOn.ToString("MMM dd, yyyy")
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="section-blue py-5">
+        <div class="container">
+            <h2 class="text-center mb-4">Meet Our Team</h2>
+            <div class="row">
+                @foreach (var member in team)
+                {
+                    <div class="col-md-4 mb-4 text-center">
+                        <div class="card h-100 shadow-sm border-0 card-orange">
+                            <div class="card-body">
+                                <img src="@member.PhotoUrl" class="rounded-circle shadow mb-3" width="100" height="100" />
+                                <h5 class="card-title">@member.Name</h5>
+                                <p class="card-text">@member.Position</p>
+                                <a href="@member.LinkedInUrl" target="_blank" class="btn btn-outline-warning btn-sm">LinkedIn</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </section>
+</div>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<GeniousTech.Models.Service>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Services";
+}
+
+<h2>Manage Services</h2>
+<a class="btn btn-primary mb-3" asp-area="Admin" asp-controller="Services" asp-action="Create">Add New Service</a>
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Icon</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.Title</td>
+                <td>@service.Description</td>
+                <td><i class="@service.IconClass"></i> @service.IconClass</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@service.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@service.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,23 @@
+﻿@model GeniousTech.Models.TeamMember
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Delete Team Member";
+}
+
+<h2>Delete Team Member</h2>
+
+<h4>Are you sure you want to delete this member?</h4>
+
+<div><strong>Name:</strong> @Model.Name</div>
+<div><strong>Position:</strong> @Model.Position</div>
+@if (!string.IsNullOrEmpty(Model.PhotoUrl))
+{
+    <div><strong>Photo:</strong> <img src="@Model.PhotoUrl" width="100" /></div>
+}
+<div><strong>LinkedIn:</strong> <a href="@Model.LinkedInUrl">@Model.LinkedInUrl</a></div>
+
+<form asp-action="Delete" method="post">
+    <input type="hidden" asp-for="Id" />
+    <button type="submit" class="btn btn-danger">Yes, Delete</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+</form>

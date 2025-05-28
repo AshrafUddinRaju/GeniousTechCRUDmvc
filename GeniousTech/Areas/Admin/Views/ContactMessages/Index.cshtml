@@ -1,0 +1,34 @@
+﻿@model IEnumerable<GeniousTech.Models.ContactMessage>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Contact Messages";
+}
+
+<h2>Contact Messages</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Subject</th>
+            <th>Sent At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var msg in Model)
+        {
+            <tr>
+                <td>@msg.Name</td>
+                <td>@msg.Email</td>
+                <td>@msg.Subject</td>
+                <td>@msg.SentAt.ToString("g")</td>
+                <td>
+                    <a class="btn btn-sm btn-info" asp-action="Details" asp-route-id="@msg.Id">View</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@msg.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

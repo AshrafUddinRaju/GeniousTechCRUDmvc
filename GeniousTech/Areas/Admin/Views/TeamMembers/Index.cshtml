@@ -1,0 +1,42 @@
+﻿@model IEnumerable<GeniousTech.Models.TeamMember>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Team Members";
+}
+
+<h2>Manage Team</h2>
+<a class="btn btn-primary mb-3" asp-action="Create">Add New Member</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Position</th>
+            <th>Photo</th>
+            <th>LinkedIn</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var member in Model)
+        {
+            <tr>
+                <td>@member.Name</td>
+                <td>@member.Position</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(member.PhotoUrl))
+                    {
+                        <img src="@member.PhotoUrl" width="60" />
+                    }
+                </td>
+                <td>
+                    <a href="@member.LinkedInUrl" target="_blank">@member.LinkedInUrl</a>
+                </td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@member.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@member.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

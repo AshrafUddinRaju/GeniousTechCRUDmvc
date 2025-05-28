@@ -1,0 +1,15 @@
+﻿@model GeniousTech.Models.ContactMessage
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Message Details";
+}
+
+<h2>Message Details</h2>
+
+<div class="mb-2"><strong>Name:</strong> @Model.Name</div>
+<div class="mb-2"><strong>Email:</strong> @Model.Email</div>
+<div class="mb-2"><strong>Subject:</strong> @Model.Subject</div>
+<div class="mb-2"><strong>Message:</strong> @Model.Message</div>
+<div class="mb-4"><strong>Sent At:</strong> @Model.SentAt.ToString("f")</div>
+
+<a asp-action="Index" class="btn btn-secondary">Back to List</a>

@@ -1,0 +1,26 @@
+﻿@model IEnumerable<GeniousTech.Models.Project>
+@{
+    ViewData["Title"] = "Our Projects";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">Our Completed Projects</h1>
+
+    <div class="row">
+        @foreach (var project in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="@project.ImageUrl" class="card-img-top" alt="@project.Title" />
+                    <div class="card-body">
+                        <h5 class="card-title">@project.Title</h5>
+                        <p class="card-text">@project.Description</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        Completed on @project.CompletedOn.ToShortDateString()
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<GeniousTech.Models.Service>
+@{
+    ViewData["Title"] = "Our Services";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">Our Services</h1>
+
+    <div class="row">
+        @foreach (var service in Model)
+        {
+            <div class="col-md-4 mb-4">
+                <div class="card h-100 text-center shadow-sm">
+                    <div class="card-body">
+                        <i class="@service.IconClass fa-2x mb-3 text-primary"></i>
+                        <h5 class="card-title">@service.Title</h5>
+                        <p class="card-text">@service.Description</p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

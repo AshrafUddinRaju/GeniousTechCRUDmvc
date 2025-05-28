@@ -1,0 +1,29 @@
+﻿@model IEnumerable<GeniousTech.Models.TeamMember>
+@{
+    ViewData["Title"] = "Our Team";
+}
+
+<div class="container py-5">
+    <h1 class="text-center mb-4">Meet Our Team</h1>
+
+    <div class="row">
+        @foreach (var member in Model)
+        {
+            <div class="col-md-4 mb-4 text-center">
+                <div class="card h-100 shadow-sm p-3">
+                    <img src="@member.PhotoUrl" class="rounded-circle mb-3" width="120" height="120" alt="@member.Name" />
+                    <div class="card-body">
+                        <h5>@member.Name</h5>
+                        <p class="text-muted">@member.Position</p>
+                        @if (!string.IsNullOrEmpty(member.LinkedInUrl))
+                        {
+                            <a href="@member.LinkedInUrl" target="_blank" class="btn btn-outline-primary btn-sm">
+                                <i class="fab fa-linkedin"></i> LinkedIn
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

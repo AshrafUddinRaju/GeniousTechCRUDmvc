@@ -1,0 +1,40 @@
+﻿@model IEnumerable<GeniousTech.Models.Project>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+    ViewData["Title"] = "Manage Projects";
+}
+
+<h2>Manage Projects</h2>
+<a class="btn btn-primary mb-3" asp-action="Create">Add New Project</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Image</th>
+            <th>Completed On</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Title</td>
+                <td>@p.Description</td>
+                <td>
+                    @if (!string.IsNullOrEmpty(p.ImageUrl))
+                    {
+                        <img src="@p.ImageUrl" alt="Image" width="100" />
+                    }
+                </td>
+                <td>@p.CompletedOn.ToString("yyyy-MM-dd")</td>
+                <td>
+                    <a class="btn btn-sm btn-warning" asp-action="Edit" asp-route-id="@p.Id">Edit</a>
+                    <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@p.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
